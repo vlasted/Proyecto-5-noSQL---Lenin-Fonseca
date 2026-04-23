@@ -1,0 +1,22 @@
+{
+  "name": "lenin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+  "dev": "nodemon index.js",
+  "start": "node index.js",
+  "seed:movies": "node seeds/movies.seed.js"
+},
+  "keywords": [],
+  "author": "Lenion Fonseca",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongoose": "^9.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}

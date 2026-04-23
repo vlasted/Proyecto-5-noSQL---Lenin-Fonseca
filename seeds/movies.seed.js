@@ -41,7 +41,7 @@ const movies = [
 ];
 const movieDocuments = movies.map(movie => new Movie(movie));
 mongoose
-  .connect('mongodb://localhost:27017/proyecto-basico-express-movies')
+  .connect('mongodb://localhost:27017/proyecto5_movies_api')
   .then(async () => {
     const allMovies = await Movie.find();
     if (allMovies.length) {

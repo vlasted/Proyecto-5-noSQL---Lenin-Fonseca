@@ -1,16 +1,14 @@
 const mongoose = require('mongoose');
 
-const urlDb = 'mongodb://localhost:27017/proyecto-basico-express-movies'
+const urlDb = 'mongodb://localhost:27017/proyecto5_movies_api';
 
 const connect = async () => {
-    try {
-        await mongoose.connect(urlDb, { useNewUrlParser: true, useUnifiedTopology: true});
-        console.log(`Conected with db succesfully`);
-    }catch(error) {
-        console.log('Error to connect with db')
-    };
-}
-
-module.exports = {
-    connect
+  try {
+    await mongoose.connect(urlDb);
+    console.log('Conectado a MongoDB correctamente');
+  } catch (error) {
+    console.log('Error al conectar con MongoDB');
+  }
 };
+
+module.exports = { connect };
