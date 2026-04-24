@@ -28,4 +28,52 @@ router.post('/', async (req, res) => {
   }
 });
 
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedCinema = await Cinema.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    if (!updatedCinema) {
+      return res.status(404).json({
+        message: 'No cinema found by this id'
+      });
+    }
+
+    return res.status(200).json(updatedCinema);
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Error updating cinema',
+      error: err.message
+    });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedCinema = await Cinema.findByIdAndDelete(id);
+
+    if (!deletedCinema) {
+      return res.status(404).json({
+        message: 'No cinema found by this id'
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Cinema deleted successfully',
+      deletedCinema
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Error deleting cinema',
+      error: err.message
+    });
+  }
+});
+
 module.exports = router;
