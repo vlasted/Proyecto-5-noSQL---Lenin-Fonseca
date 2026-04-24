@@ -1,5 +1,5 @@
 {
-  "name": "lenin",
+  "name": "proyecto-5-nosql-lenin-fonseca",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,7 +9,7 @@
   "seed:movies": "node seeds/movies.seed.js"
 },
   "keywords": [],
-  "author": "Lenion Fonseca",
+  "author": "Lenin Fonseca",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
