@@ -61,4 +61,65 @@ router.get('/year/:year', async (req, res) => {
   }
 });
 
+router.post('/', async (req, res) => {
+  try {
+    const newMovie = new Movie(req.body);
+    const createdMovie = await newMovie.save();
+    return res.status(201).json(createdMovie);
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Error creating movie',
+      error: err.message
+    });
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const updatedMovie = await Movie.findByIdAndUpdate(id, req.body, {
+      new: true,
+      runValidators: true
+    });
+
+    if (!updatedMovie) {
+      return res.status(404).json({
+        message: 'No movie found by this id'
+      });
+    }
+
+    return res.status(200).json(updatedMovie);
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Error updating movie',
+      error: err.message
+    });
+  }
+});
+
+router.delete('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedMovie = await Movie.findByIdAndDelete(id);
+
+    if (!deletedMovie) {
+      return res.status(404).json({
+        message: 'No movie found by this id'
+      });
+    }
+
+    return res.status(200).json({
+      message: 'Movie deleted successfully',
+      deletedMovie
+    });
+  } catch (err) {
+    return res.status(400).json({
+      message: 'Error deleting movie',
+      error: err.message
+    });
+  }
+});
+
 module.exports = router;
